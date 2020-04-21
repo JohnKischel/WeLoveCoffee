@@ -1,0 +1,34 @@
+﻿@model WeLoveCoffee.Data.EntityModels.LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+    <div class="text-center">
+        <form asp-route="Login">
+            <input type="hidden" asp-for="ReturnUrl" />
+
+            <fieldset>
+                <div class="form-group mb-5">
+                    <p class="display-4" style="font-size:24px">Welcome</p>
+                    <p class="display-4" style="font-size:20px">To</p>
+                    <h1 class="display-4"><span style="color:red;font-weight:bold">W</span>e<span style="color:aqua;font-weight:bold">L</span>ove<span style="color:darkorange;font-weight:bold">C</span>offee</h1>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <label><span style="font-weight:bold">Username: </span></label>
+                        <input type="text" asp-for="Username" />
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <label><span style="font-weight:bold">Password: </span></label>
+                        <input type="password" asp-for="Password" />
+                    </label>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" style="width:25%">Login</button>
+                </div>
+            </fieldset>
+        </form>        
+    </div>
