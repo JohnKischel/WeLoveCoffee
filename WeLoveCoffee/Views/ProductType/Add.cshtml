@@ -1,0 +1,15 @@
+﻿@model WeLoveCoffee.Data.EntityModels.ProductType;
+@{
+    ViewData["Title"] = "ProductType";
+}
+<div class="container">
+
+    @using (Html.BeginForm("Add", "ProductType", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label for="Type">Type</label>
+            <input type="text" class="form-control" id="Type" asp-for="Type" />
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    }
+</div>

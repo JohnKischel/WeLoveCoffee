@@ -27,13 +27,15 @@ namespace WeLoveCoffee.Data
                 .Entity<Product>()
                 .HasOne(r => r.Roast)
                 .WithMany(p => p.Products)
-                .HasForeignKey(r => r.RoastId);
+                .HasForeignKey(r => r.RoastId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder
                 .Entity<Product>()
                 .HasOne(p => p.ProductType)
                 .WithMany(l => l.Products)
-                .HasForeignKey(p => p.ProductTypeId);
+                .HasForeignKey(p => p.ProductTypeId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

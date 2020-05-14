@@ -28,10 +28,8 @@ namespace WeLoveCoffee.Data.PreConfiguration
         {
             List<User> users = new List<User>()
             {
-                new User {Id = Guid.NewGuid().ToString(), Name="default",PinCode="9421",Password = "WeLoveCoffee",Created = DateTime.Now, Consumed=0,ConsumedTotal=124,Claims= xClaim.GenerateClaim(new List<string> {"User" })},
-                new User {Id = Guid.NewGuid().ToString(), Name="Kaffeewart",PinCode="9421",Password = "WeLoveCoffee",Created = DateTime.Now, Consumed=0,ConsumedTotal=155,Claims= xClaim.GenerateClaim(new List<string> {"Admin","User" })},
-                new User {Id = Guid.NewGuid().ToString(), Name="ThomasWittenborg",PinCode="9421",Password = "WeLoveCoffee",Created = DateTime.Now, Consumed=0,ConsumedTotal=155,Claims= xClaim.GenerateClaim(new List<string> {"User" })},
-
+                new User {Id = Guid.NewGuid().ToString(), Name="Administrator",PinCode="9421",Password = "WeLoveCoffee",Created = DateTime.Now, Consumed=0,ConsumedTotal=124,Claims= xClaim.GenerateClaim(new List<string> {"User","Admin"})},
+                new User {Id = Guid.NewGuid().ToString(), Name="Kiosk",PinCode="0000",Password = "WeLoveCoffee",Created = DateTime.Now, Consumed=0,ConsumedTotal=124,Claims= xClaim.GenerateClaim(new List<string> {"User" })},
             };
 
             _context.Set<User>().AddRange(users);
@@ -40,15 +38,17 @@ namespace WeLoveCoffee.Data.PreConfiguration
 
         public static void SetProductTypes(DbContext _context)
         {
-            ProductType productType = new ProductType() { ProductTypeId=1,Type="Coffee Normal"};
-            _context.Set<ProductType>().Add(productType);
+            ProductType productType = new ProductType() { ProductTypeId=1,Type="None"};
+            ProductType productType1 = new ProductType() { ProductTypeId = 2, Type = "Test" };
+
+            _context.Set<ProductType>().AddRange(productType, productType1);
             _context.SaveChanges();
         }
 
         public static void SetRoasts(DbContext _context)
         {
-            Roast roast = new Roast() { RoastId = 1, CurrentRoast = true, Name = "Classic", Price = 6.99M ,ImagePath= "https://images.unsplash.com/photo-1581191852946-c8b7c9caf935?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60" };
-            Roast roast1 = new Roast() { RoastId = 2, CurrentRoast = false, Name = "Crempresso Speacial", Price = 12.99M,ImagePath=""};
+            Roast roast = new Roast() { RoastId = 1, CurrentRoast = true, Name = "Classic Aldi Röstung", Price = 6.99M ,ImagePath= "https://images.unsplash.com/photo-1581191852946-c8b7c9caf935?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60" };
+            Roast roast1 = new Roast() { RoastId = 2, CurrentRoast = false, Name = "Mövenpick Special", Price = 12.99M,ImagePath=""};
             _context.Set<Roast>().AddRange(roast, roast1);
             _context.SaveChanges();
         }

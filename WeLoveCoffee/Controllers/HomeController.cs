@@ -25,7 +25,11 @@ namespace WeLoveCoffee.Controllers
         public IActionResult Index()
         {
             DbContext _context = new WeLoveCoffeeDbContext();
-            var products = _context.Set<Product>().OrderBy(n => n.Name).ToList();
+            var products = _context.Set<Product>()
+                .Include(p => p.ProductType)
+                .OrderBy(n => n.Name)
+                .ToList();
+
             ViewBag.Roast = _context.Set<Roast>().Where(c => c.CurrentRoast == true).Select(n => n).FirstOrDefault();
             ViewBag.Users = _context.Set<User>().ToList();
             return View(products);

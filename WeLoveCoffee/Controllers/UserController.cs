@@ -11,40 +11,32 @@ using WeLoveCoffee.Data.EntityModels;
 
 namespace WeLoveCoffee.Controllers
 {
-    public class ManageController : Controller
+    public class UserController : Controller
     {
+        [Authorize(Policy = "Admin")]
         public IActionResult Index()
         {
+            DbContext _context = new WeLoveCoffeeDbContext();
+            var users = _context.Set<User>().ToList();
+            ViewBag.User = users;
             return View();
         }
+    
         [Authorize(Policy = "Admin")]
-        public IActionResult Products()
+        public IActionResult Add()
         {
             DbContext _context = new WeLoveCoffeeDbContext();
             ViewBag.ProductTypes = _context.Set<ProductType>();
             return View();
         }
-        public IActionResult Profile()
-        {
-            return View();
-
-        }
 
         [Authorize(Policy = "Admin")]
-        public IActionResult Roast()
+        public IActionResult Delete()
         {
             return View();
         }
 
-        [Authorize(Policy = "Admin")]
-        public IActionResult Users()
-        {
-            DbContext _context = new WeLoveCoffeeDbContext();
-            var  users =_context.Set<User>().ToList();
-            ViewBag.User = users;
-            return View();
-        }
-
+        [HttpPost]
         [Authorize(Policy = "Admin")]
         public IActionResult Edit(string userId)
         {
@@ -55,11 +47,12 @@ namespace WeLoveCoffee.Controllers
 
             var claims = JsonSerializer.Deserialize<xClaim>(user.Claims);
             ViewBag.Claims = claims.Role;
-            return Ok(user);
+            return View(user);
         }
 
+        [HttpPost]
         [Authorize(Policy = "Admin")]
-        public IActionResult Remove(string userId)
+        public IActionResult Delete(string userId)
         {
             DbContext _context = new WeLoveCoffeeDbContext();
             var user = _context.Set<User>().Where(id => id.Id == userId).FirstOrDefault();
@@ -68,7 +61,7 @@ namespace WeLoveCoffee.Controllers
             {
                 _context.Remove<User>(user);
                 _context.SaveChanges();
-                return LocalRedirect("/Manage/Users");
+                return LocalRedirect("/User");
             }
 
             return StatusCode(403, Json("Cant remove admin. Remove role 'Admin' first"));

@@ -1,18 +1,27 @@
 ﻿@model List<WeLoveCoffee.Data.EntityModels.Product>;
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Manage";
 }
-    <div class="container">
-        <div class="col-4">
-            <h1>Users</h1>
-            <a class="btn btn-primary">Manage users</a>
-        </div>
-        <div class="col-4">
-            <h1>Products</h1>
-            <a class="btn btn-primary">Manage products</a>
-        </div>
-        <div class="col-4">
-            <h1>Roast</h1>
-            <a class="btn btn-primary">Manage Roast</a>
-        </div>
-    </div>
+<table class="table table-striped table-bordered">
+    <thead class="bg-primary font-weight-bold text-center">
+        <tr>
+            <td>Action</td>
+            <td>Description</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a href="/Product">Product</a></td>
+            <td>Manage all products available actions(Add,Edit,Delete)</td>
+        </tr>
+        <tr>
+            <td><a href="/Roast">Roast</a></td>
+            <td>Manage all roasts available actions(Add,Edit,Delete)</td>
+        </tr>
+        <tr>
+            <td><a href="/User">User</a></td>
+            <td>Manage all ssers available actions(Add,Edit,Delete)</td>
+        </tr>
+    </tbody>
+
+</table>

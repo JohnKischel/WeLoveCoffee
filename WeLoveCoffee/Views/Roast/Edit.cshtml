@@ -1,0 +1,40 @@
+﻿@model WeLoveCoffee.Data.EntityModels.Roast;
+@{
+    ViewData["Title"] = "ProductType";
+}
+    <div class="container">
+
+        @using (Html.BeginForm("Update", "Roast", FormMethod.Post))
+        {
+            <div class="form-group">
+                <label>Id</label>
+                <input type="text" class="form-control" readonly asp-for="RoastId" value="@Model.RoastId" />
+            </div>
+            <div class="form-group">
+                <label for="Type">Name</label>
+                <input type="text" class="form-control" value="@Model.Name" id="Type" asp-for="Name" />
+            </div>
+
+            <div class="form-group">
+                <label for="Type">Price</label>
+                <input type="text" class="form-control" value="@Model.Price" id="Type" asp-for="Price" />
+            </div>
+
+            <div class="form-group">
+                <label for="Type">CurrentRoast</label>
+                <input type="text" class="form-control" value="@Model.CurrentRoast" id="Type" asp-for="CurrentRoast" />
+            </div>
+
+            <div class="form-group">
+                <label for="Type">Strength</label>
+                <input type="text" class="form-control" value="@Model.Strength" id="Type" asp-for="Strength" />
+            </div>
+
+            <div class="form-group">
+                <label for="Type">ImagePath</label>
+                <input type="text" class="form-control" value="@Model.ImagePath" id="Type" asp-for="ImagePath" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+        }
+    </div>

@@ -15,6 +15,7 @@ namespace WeLoveCoffee.Data.EntityModels
         public DateTime Created { get; set; }
         public int Consumed { get; set; }
         public int ConsumedTotal { get; set; }
+        public decimal AccountBalance { get; set; }
         public string Claims { get; set; }
     }
 }
